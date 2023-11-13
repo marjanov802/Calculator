@@ -125,6 +125,7 @@
 				<version>3.8.0</version>
 				<configuration>
 					<release>11</release>
+					
 				</configuration>
 			</plugin>
 
