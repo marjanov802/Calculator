@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.BooleanSupplier;
 
 /**
  * The Stack class is a stack which uses the Entry class.
