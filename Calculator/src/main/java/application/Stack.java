@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.function.BooleanSupplier;
 
 /**
  * The Stack class is a stack which uses the Entry class.
@@ -14,7 +13,6 @@ import java.util.function.BooleanSupplier;
 public class Stack {
 
   private List<Entry> entries = new ArrayList<>();
-  private int size = 0;
 
   /**
    * Pushes an Entry onto the stack.
@@ -23,7 +21,6 @@ public class Stack {
    */
   public void push(Entry entry) {
     entries.add(entry);
-    size++;
   }
 
   /**
@@ -32,7 +29,7 @@ public class Stack {
    * @return true if the stack is empty, false otherwise.
    */
   public boolean isEmpty() {
-    return size == 0;
+    return entries.isEmpty();
   }
 
   /**
@@ -43,7 +40,7 @@ public class Stack {
    */
   public Entry pop() {
     if (isEmpty()) {
-      throw new NoSuchElementException("Stack is empty");
+      throw new EmptyStackException();
     }
     Entry poppedEntry = entries.remove(entries.size() - 1);
     return poppedEntry;
@@ -57,7 +54,7 @@ public class Stack {
    */
   public Entry top() {
     if (isEmpty()) {
-      throw new NoSuchElementException("Stack is empty");
+      throw new EmptyStackException();
     }
     return entries.get(entries.size() - 1);
   }

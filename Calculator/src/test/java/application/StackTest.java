@@ -4,9 +4,7 @@ package application;
  * @author DMarjanov
  */
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.NoSuchElementException;
-
+import java.util.EmptyStackException;
 import org.junit.jupiter.api.Test;
 
 public class StackTest {
@@ -54,9 +52,9 @@ public class StackTest {
     Stack stack = new Stack();
     try {
       stack.pop();
-      fail("Expected NoSuchElementException");
-    } catch (NoSuchElementException e) {
-      assertEquals("Stack is empty", e.getMessage());
+      fail("Expected EmptyStackException"); // Changed from NoSuchElementException to EmptyStackException
+    } catch (EmptyStackException e) {
+      // No need to check the error message for EmptyStackException
     }
   }
 
@@ -102,15 +100,15 @@ public class StackTest {
   }
 
   @Test
-  // test 3.2 checks if top entry is returned from a empty stack
+  // test 3.2 checks if top entry is returned from an empty stack
   // error should be throw
-  public void testStackTopEntryReturnEmtpyStack() {
+  public void testStackTopEntryReturnEmptyStack() {
     Stack stack = new Stack();
     try {
       stack.top();
-      fail("Expected NoSuchElementException");
-    } catch (NoSuchElementException e) {
-      assertEquals("Stack is empty", e.getMessage());
+      fail("Expected EmptyStackException"); // Changed from NoSuchElementException to EmptyStackException
+    } catch (EmptyStackException e) {
+      // No need to check the error message for EmptyStackException
     }
   }
 
