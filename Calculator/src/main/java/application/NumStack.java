@@ -1,5 +1,10 @@
 package application;
 
+/**
+ * Extension of the stack class fro float values.
+ * 
+ * @author DMarjanov
+ */
 public class NumStack {
 
   private Stack numStack = new Stack();
