@@ -8,7 +8,7 @@ public class CalcModelTest {
   @Test
   public void testEvaluateWithRevPolishCalculator() throws InvalidExpression {
     CalcModel calcModel = new CalcModel();
-    Calculator revPolishCalculator = new RevPolishCalculator(); // Replace with your actual implementation
+    Calculator revPolishCalculator = new RevPolishCalc(); // Replace with your actual implementation
     calcModel.setRevPolishCalculator(revPolishCalculator);
 
     float result = calcModel.evaluate("3 4 +", false);
