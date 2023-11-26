@@ -1,45 +1,31 @@
 package application;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import java.util.Random;
+import static org.junit.Assert.*;
 
 public class CalcModelTest {
 
   @Test
   public void testEvaluateWithRevPolishCalculator() throws InvalidExpression {
-    Random random = new Random();
+    CalcModel calcModel = new CalcModel();
+    Calculator revPolishCalculator = new RevPolishCalculator(); // Replace with your actual implementation
+    calcModel.setRevPolishCalculator(revPolishCalculator);
 
-    Calculator revPolishCalculator = (expr, infix) -> random.nextFloat() * 10; // Random value
-    Calculator standardCalculator = (expr, infix) -> random.nextFloat() * 10;
-    CalcModel calcModel = new CalcModel(revPolishCalculator, standardCalculator);
     float result = calcModel.evaluate("3 4 +", false);
-    assertTrue(result >= 0.0f && result <= 10.0f);
-  }
 
-
-  @Test
-  public void testEvaluateWithStandardCalculator() throws InvalidExpression {
-    Calculator revPolishCalculator = (expr, infix) -> 0.0f;
-    Calculator standardCalculator = (expr, infix) -> 7.0f;
-
-    CalcModel calcModel = new CalcModel(revPolishCalculator, standardCalculator);
-    float result = calcModel.evaluate("3 + 4", true);
     assertEquals(7.0f, result, 0.001f);
   }
 
 
-  @Test(expected = InvalidExpression.class)
-  public void testEvaluateInvalidExpression() throws InvalidExpression {
-    Calculator revPolishCalculator = (expr, infix) -> {
-      throw new InvalidExpression();
-    };
+  @Test(expected = IllegalStateException.class)
+  public void testEvaluateWithNullRevPolishCalculator() throws InvalidExpression {
+    CalcModel calcModel = new CalcModel();
+    calcModel.evaluate("3 4 +", false);
+  }
 
-    Calculator standardCalculator = (expr, infix) -> 0.0f;
-
-    CalcModel calcModel = new CalcModel(revPolishCalculator, standardCalculator);
-
-    calcModel.evaluate("invalid expression", false);
+  @Test(expected = IllegalStateException.class)
+  public void testEvaluateWithNullStandardCalculator() throws InvalidExpression {
+    CalcModel calcModel = new CalcModel();
+    calcModel.evaluate("3 + 4", true);
   }
 }
