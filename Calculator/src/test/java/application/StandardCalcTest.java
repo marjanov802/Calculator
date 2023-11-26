@@ -32,7 +32,7 @@ public class StandardCalcTest {
   public void testEvaluateComplexExpression() throws InvalidExpression {
     StandardCalc calculator = new StandardCalc();
     float result = calculator.evaluate("3 + 5 * 2 - 4 / 2", true);
-    assertEquals(11.0f, result, 0.001f); 
+    assertEquals(11.0f, result, 0.001f);
   }
 
   @Test
