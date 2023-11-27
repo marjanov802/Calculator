@@ -56,6 +56,6 @@ public class NumStackTest {
   @Test(expected = EmptyStackException.class)
   public void testTopEmptyStack() {
     NumStack numStack = new NumStack();
-    numStack.top(); // This should throw EmptyStackException
+    numStack.top();
   }
 }

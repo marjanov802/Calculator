@@ -1,0 +1,1 @@
+This release has the pom fixed and all imokemetations of the stack classes to hold the value number , string and operator.
