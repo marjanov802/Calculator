@@ -1,8 +1,9 @@
 package application;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.util.EmptyStackException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class OpStackTest {
 

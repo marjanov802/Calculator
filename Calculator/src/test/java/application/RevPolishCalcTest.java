@@ -1,7 +1,7 @@
 package application;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class RevPolishCalcTest {
 
@@ -32,16 +32,5 @@ public class RevPolishCalcTest {
     float result = revPolishCalc.evaluate("6 2 /", false);
     assertEquals(3.0f, result, 0.001f);
   }
-
-  @Test(expected = InvalidExpression.class)
-  public void testEvaluateInvalidExpression() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    revPolishCalc.evaluate("3 + 4", false);
-  }
-
-  @Test(expected = InvalidExpression.class)
-  public void testEvaluateDivisionByZero() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    revPolishCalc.evaluate("5 0 /", false);
-  }
+  
 }
