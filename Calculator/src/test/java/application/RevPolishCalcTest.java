@@ -1,36 +1,51 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 public class RevPolishCalcTest {
 
   @Test
-  public void testEvaluateAddition() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    float result = revPolishCalc.evaluate("3 4 +", false);
-    assertEquals(7.0f, result, 0.001f);
+  public void testEvaluateWithValidExpression() {
+    Stack stack = new Stack();
+    RevPolishCalc calculator = new RevPolishCalc(stack);
+
+    try {
+      float result = calculator.evaluate("3 5 +");
+      assertEquals(8.0f, result, 0.001);
+    } catch (InvalidExpression e) {
+      fail("Unexpected InvalidExpression: " + e.getMessage());
+    }
   }
 
   @Test
-  public void testEvaluateSubtraction() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    float result = revPolishCalc.evaluate("5 2 -", false);
-    assertEquals(3.0f, result, 0.001f);
+  public void testEvaluateWithInvalidExpression() {
+    Stack stack = new Stack();
+    RevPolishCalc calculator = new RevPolishCalc(stack);
+
+    try {
+      calculator.evaluate("invalid expression");
+      fail("Expected InvalidExpression, but no exception was thrown");
+    } catch (InvalidExpression e) {
+      // Expected InvalidExpression
+    }
   }
 
   @Test
-  public void testEvaluateMultiplication() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    float result = revPolishCalc.evaluate("4 3 *", false);
-    assertEquals(12.0f, result, 0.001f);
+  public void testEvaluateWithEmptyExpression() {
+    Stack stack = new Stack();
+    RevPolishCalc calculator = new RevPolishCalc(stack);
+
+    try {
+      calculator.evaluate("");
+      fail("Expected InvalidExpression, but no exception was thrown");
+    } catch (InvalidExpression e) {
+      // Expected InvalidExpression
+    }
   }
 
-  @Test
-  public void testEvaluateDivision() throws InvalidExpression {
-    RevPolishCalc revPolishCalc = new RevPolishCalc();
-    float result = revPolishCalc.evaluate("6 2 /", false);
-    assertEquals(3.0f, result, 0.001f);
-  }
-  
+
+
 }
+

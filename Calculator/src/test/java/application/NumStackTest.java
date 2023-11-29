@@ -3,6 +3,7 @@ package application;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
+
 public class NumStackTest {
 
   // Test 1.0 Checks that push works

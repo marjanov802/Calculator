@@ -5,24 +5,27 @@ package application;
  */
 public class Driver {
 
-  /**
-   * The entry point for the calculator.
-   * 
-   * @param args ignored - could be used to choose which view to load in future?
-   */
-  public static void main(String[] args) {
-    ViewInterface view = new AsciiView();
+    /**
+     * The entry point for the calculator.
+     *
+     * @param args ignored - could be used to choose which view to load in the future?
+     */
+    public static void main(String[] args) {
+        ViewInterface view = new AsciiView();
 
-    CalcModel model = new CalcModel();
-    System.out.println("hello");
+        Stack stack = new Stack(); // Create a Stack instance
+        RevPolishCalc revPolishCalc = new RevPolishCalc(stack); // Create a RevPolishCalc instance
 
-    // Decide which view to build.
-    if (System.console() == null) {
-      System.out.println("hello");
-      view = CalcView.getInstance();
+        CalcModel model = new CalcModel(revPolishCalc); // Pass RevPolishCalc to CalcModel constructor
+        System.out.println("hello");
+
+        // Decide which view to build.
+        if (System.console() == null) {
+            System.out.println("hello");
+            view = CalcView.getInstance();
+        }
+        new CalcController(model, view);
+        // All ready so begin the interface.
+        view.startView();
     }
-    new CalcController(model, view);
-    // All ready so begin the interface.
-    view.startView();
-  }
 }
