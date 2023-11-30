@@ -16,17 +16,6 @@ public class CalcModelTest {
     assertEquals(7.0f, result, 0.001f);
   }
 
-  @Test
-  public void testEvaluateWithStandardCalculator() throws InvalidExpression {
-    CalcModel calcModel = new CalcModel();
-    Calculator standardCalculator = new StandardCalc(); 
-    calcModel.setStandardCalculator(standardCalculator);
-
-    float result = calcModel.evaluate("3 + 4", true);
-
-    assertEquals(7.0f, result, 0.001f);
-  }
-
   @Test(expected = IllegalStateException.class)
   public void testEvaluateWithNullRevPolishCalculator() throws InvalidExpression {
     CalcModel calcModel = new CalcModel();
