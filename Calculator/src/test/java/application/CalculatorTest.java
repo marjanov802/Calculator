@@ -1,7 +1,8 @@
 package application;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 public class CalculatorTest {
 
@@ -17,12 +18,14 @@ public class CalculatorTest {
     assertEquals(7.0f, result, 0.001f);
   }
 
-  @Test(expected = InvalidExpression.class)
-  public void testEvaluateInvalidExpression() throws InvalidExpression {
+  @Test
+  public void testEvaluateInvalidExpression() {
     Calculator calculator = (expr, infix) -> {
       throw new InvalidExpression();
     };
-
-    calculator.evaluate("invalid expression", true);
+    assertThrows(InvalidExpression.class, () -> {
+      calculator.evaluate("invalid expression", true);
+    });
   }
+
 }

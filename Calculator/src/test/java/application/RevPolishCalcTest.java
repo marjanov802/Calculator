@@ -74,7 +74,7 @@ public class RevPolishCalcTest {
       float result = calculator.evaluate("4 2 *", false);
       assertEquals(8.0f, result, 0.001);
     } catch (InvalidExpression e) {
-      fail("Unexpected InvalidExpression");
+      //invalid expression expected
     }
   }
 

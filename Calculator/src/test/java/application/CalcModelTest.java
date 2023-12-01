@@ -1,7 +1,8 @@
 package application;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 public class CalcModelTest {
 
@@ -16,15 +17,22 @@ public class CalcModelTest {
     assertEquals(7.0f, result, 0.001f);
   }
 
-  @Test(expected = IllegalStateException.class)
-  public void testEvaluateWithNullRevPolishCalculator() throws InvalidExpression {
+  @Test
+  public void testEvaluateWithNullRevPolishCalculator() {
     CalcModel calcModel = new CalcModel();
-    calcModel.evaluate("3 4 +", false);
+
+    assertThrows(IllegalStateException.class, () -> {
+      calcModel.evaluate("3 4 +", false);
+    });
   }
 
-  @Test(expected = IllegalStateException.class)
-  public void testEvaluateWithNullStandardCalculator() throws InvalidExpression {
+  @Test
+  public void testEvaluateWithNullStandardCalculator() {
     CalcModel calcModel = new CalcModel();
-    calcModel.evaluate("3 + 4", true);
+
+    assertThrows(IllegalStateException.class, () -> {
+      calcModel.evaluate("3 + 4", true);
+    });
   }
+
 }

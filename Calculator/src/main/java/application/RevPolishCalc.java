@@ -2,6 +2,10 @@ package application;
 
 import java.util.Stack;
 
+/**
+ * Class which represents a Reverse Polish Notation Calculator.
+ * Implements the Calculator interface. 
+ */
 public class RevPolishCalc implements Calculator {
 
   private Stack<Float> numStack;
