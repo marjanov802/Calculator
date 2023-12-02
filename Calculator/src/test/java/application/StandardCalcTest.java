@@ -1,13 +1,21 @@
 package application;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class StandardCalcTest {
+public class StandardCalcTest {
 
-  @Test
-  void createStandardCalcShouldNotBeNull() {
-    StandardCalc calculator = new StandardCalc();
-    assertNotNull(calculator);
-  }
+    @Test
+    void testSimpleAddition() throws InvalidExpression {
+        Calculator calculator = new StandardCalc();
+        float result = calculator.evaluate("2 + 3", true);
+        assertEquals(5, result);
+    }
+
+    @Test
+    void testSimpleMultiplication() throws InvalidExpression {
+        Calculator calculator = new StandardCalc();
+        float result = calculator.evaluate("2 * 3", true);
+        assertEquals(6, result);
+    }
 }
