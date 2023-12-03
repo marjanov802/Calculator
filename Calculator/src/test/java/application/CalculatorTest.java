@@ -1,15 +1,10 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-<<<<<<< HEAD
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.Test;
-=======
 import org.junit.jupiter.api.Test;
 
 
 
->>>>>>> feature-StandardCalc
 
 public class CalculatorTest {
 
@@ -24,18 +19,4 @@ public class CalculatorTest {
     float result = calculator.evaluate("3 + 4", true);
     assertEquals(7.0f, result, 0.001f);
   }
-<<<<<<< HEAD
-
-  @Test
-  public void testEvaluateInvalidExpression() {
-    Calculator calculator = (expr, infix) -> {
-      throw new InvalidExpression();
-    };
-    assertThrows(InvalidExpression.class, () -> {
-      calculator.evaluate("invalid expression", true);
-    });
-  }
-
-=======
->>>>>>> feature-StandardCalc
 }

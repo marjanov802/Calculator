@@ -1,60 +1,54 @@
 package application;
 
-import java.util.Stack;
+import java.util.EmptyStackException;
 
-/**
- * Class which represents a Reverse Polish Notation Calculator.
- * Implements the Calculator interface. 
- */
-public class RevPolishCalc implements Calculator {
+class RevPolishCalc {
 
-  private Stack<Float> numStack;
+  private Stack numStack;
 
-  public RevPolishCalc() {
-    numStack = new Stack<>();
+  /**
+   * Constructs a RevPolishCalc object with the given Stack.
+   * 
+   * @param numStack The Stack used for operand storage.
+   */
+  RevPolishCalc(Stack numStack) {
+    this.numStack = numStack;
   }
 
-  @Override
-  public float evaluate(String expression, Boolean infix) throws InvalidExpression {
-    if (infix) {
-      throw new InvalidExpression();
+  /**
+   * Evaluates a mathematical expression in Reverse Polish Notation.
+   * 
+   * @param expr The expression in Reverse Polish Notation.
+   * @return The result of the evaluation.
+   * @throws InvalidExpression If the expression is invalid or cannot be evaluated.
+   */
+  float evaluate(String expr) throws InvalidExpression {
+    String[] expression = expr.split("\\s+");
+
+    for (String element : expression) {
+      evaluateElement(element);
     }
 
-    String[] elements = expression.split("\\s+");
-    numStack.clear();
-
     try {
-      for (int i = 0; i < elements.length; i++) {
-        if (isNumber(elements[i])) {
-          numStack.push(Float.parseFloat(elements[i]));
-        } else {
-          performOperation(elements[i]);
-        }
-      }
-
-      if (numStack.size() != 1) {
-        throw new InvalidExpression();
-      }
-
-      return numStack.pop();
-    } catch (NumberFormatException e) {
+      return numStack.pop().getValue();
+    } catch (EmptyStackException e) {
       throw new InvalidExpression();
     }
   }
 
-  private boolean isNumber(String str) {
+  private void evaluateElement(String element) throws InvalidExpression {
     try {
-      Float.parseFloat(str);
-      return true;
+      float operand = Float.parseFloat(element);
+      numStack.push(new Entry(operand));
     } catch (NumberFormatException e) {
-      return false;
+      performOperation(element);
     }
   }
 
   private void performOperation(String operator) throws InvalidExpression {
     try {
-      float operand2 = numStack.pop();
-      float operand1 = numStack.pop();
+      float operand2 = numStack.pop().getValue();
+      float operand1 = numStack.pop().getValue();
 
       float result;
       switch (operator) {
@@ -77,8 +71,8 @@ public class RevPolishCalc implements Calculator {
           throw new InvalidExpression();
       }
 
-      numStack.push(result);
-    } catch (java.util.EmptyStackException e) {
+      numStack.push(new Entry(result));
+    } catch (EmptyStackException e) {
       throw new InvalidExpression();
     }
   }

@@ -1,10 +1,5 @@
 package application;
 
-<<<<<<< HEAD
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-=======
->>>>>>> feature-StandardCalc
 import org.junit.jupiter.api.Test;
 
 public class CalcModelTest {
@@ -27,25 +22,6 @@ public class CalcModelTest {
         RevPolishCalc simpleCalculator = new RevPolishCalc(new Stack());
         CalcModel calcModel = new CalcModel(simpleCalculator);
 
-<<<<<<< HEAD
-  @Test
-  public void testEvaluateWithNullRevPolishCalculator() {
-    CalcModel calcModel = new CalcModel();
-
-    assertThrows(IllegalStateException.class, () -> {
-      calcModel.evaluate("3 4 +", false);
-    });
-  }
-
-  @Test
-  public void testEvaluateWithNullStandardCalculator() {
-    CalcModel calcModel = new CalcModel();
-
-    assertThrows(IllegalStateException.class, () -> {
-      calcModel.evaluate("3 + 4", true);
-    });
-  }
-=======
         try {
             calcModel.evaluateExpression("invalid expression");
             assert false : "Expected InvalidExpression, but no exception was thrown";
@@ -68,6 +44,5 @@ public class CalcModelTest {
     }
 
     // Add more tests as needed for different scenarios and edge cases
->>>>>>> feature-StandardCalc
 
 }

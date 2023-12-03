@@ -1,14 +1,8 @@
 package application;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-<<<<<<< HEAD
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import java.util.EmptyStackException;
-import org.junit.jupiter.api.Test;
-=======
 import org.junit.jupiter.api.Test;
 
->>>>>>> feature-StandardCalc
 
 public class NumStackTest {
 
@@ -49,23 +43,4 @@ public class NumStackTest {
     numStack.pop();
     assertEquals(1, numStack.size());
   }
-<<<<<<< HEAD
-
-  // Test case to verify that popping from an empty stack throws EmptyStackException.
-  @Test
-  public void testPopEmptyStack() {
-    NumStack numStack = new NumStack();
-    assertThrows(EmptyStackException.class, () -> numStack.pop());
-  }
-
-  // Test case to verify that retrieving the top element from an empty stack throws
-  // EmptyStackException.
-  @Test
-  public void testTopEmptyStack() {
-    NumStack numStack = new NumStack();
-    assertThrows(EmptyStackException.class, () -> numStack.top());
-  }
-
-=======
->>>>>>> feature-StandardCalc
 }
