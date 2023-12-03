@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class StandardCalc implements Calculator {
 
   private OpStack opStack;
@@ -40,10 +43,45 @@ public class StandardCalc implements Calculator {
         throw new InvalidExpression();
     }
   }
-  
-  public String convertToPostfix(String infix) throws InvalidExpression {
-    return ("3 4 +");
-}
 
+  String convertToPostfix(String infix) throws InvalidExpression {//Trail 1 Shunting yard Algorithm
+    StringBuilder postfix = new StringBuilder();
+    Deque<Character> stack = new ArrayDeque<>();
 
+    for (int i = 0; i < infix.length(); i++) {
+      char c = infix.charAt(i);
+
+      if (Character.isWhitespace(c)) {
+        continue;
+      }
+
+      if (Character.isDigit(c)) {
+        postfix.append(c).append(' ');
+      } else {
+        while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(c)) {
+          postfix.append(stack.pop()).append(' ');
+        }
+        stack.push(c);
+      }
+    }
+
+    while (!stack.isEmpty()) {
+      postfix.append(stack.pop()).append(' ');
+    }
+
+    return postfix.toString().trim();
+  }
+
+  private int precedence(char op) {// order in which operators are evaluated in an expression
+    switch (op) {
+      case '+':
+      case '-':
+        return 1;
+      case '*':
+      case '/':
+        return 2;
+      default:
+        return 0;
+    }
+  }
 }
