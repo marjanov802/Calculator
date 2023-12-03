@@ -1,22 +1,33 @@
 package application;
 
+<<<<<<< HEAD
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+=======
+>>>>>>> feature-StandardCalc
 import org.junit.jupiter.api.Test;
 
 public class CalcModelTest {
 
-  @Test
-  public void testEvaluateWithRevPolishCalculator() throws InvalidExpression {
-    CalcModel calcModel = new CalcModel();
-    Calculator revPolishCalculator = new RevPolishCalc();
-    calcModel.setRevPolishCalculator(revPolishCalculator);
+    @Test
+    public void testEvaluateExpressionWithValidExpression() {
+        RevPolishCalc simpleCalculator = new RevPolishCalc(new Stack());
+        CalcModel calcModel = new CalcModel(simpleCalculator);
 
-    float result = calcModel.evaluate("3 4 +", false);
+        try {
+            float result = calcModel.evaluateExpression("3 5 +");
+            assert result == 8.0f : "Expected result: 8.0, Actual result: " + result;
+        } catch (InvalidExpression e) {
+            assert false : "Unexpected InvalidExpression: " + e.getMessage();
+        }
+    }
 
-    assertEquals(7.0f, result, 0.001f);
-  }
+    @Test
+    public void testEvaluateExpressionWithInvalidExpression() {
+        RevPolishCalc simpleCalculator = new RevPolishCalc(new Stack());
+        CalcModel calcModel = new CalcModel(simpleCalculator);
 
+<<<<<<< HEAD
   @Test
   public void testEvaluateWithNullRevPolishCalculator() {
     CalcModel calcModel = new CalcModel();
@@ -34,5 +45,29 @@ public class CalcModelTest {
       calcModel.evaluate("3 + 4", true);
     });
   }
+=======
+        try {
+            calcModel.evaluateExpression("invalid expression");
+            assert false : "Expected InvalidExpression, but no exception was thrown";
+        } catch (InvalidExpression e) {
+            // Expected InvalidExpression
+        }
+    }
+
+    @Test
+    public void testEvaluateExpressionWithEmptyExpression() {
+        RevPolishCalc simpleCalculator = new RevPolishCalc(new Stack());
+        CalcModel calcModel = new CalcModel(simpleCalculator);
+
+        try {
+            calcModel.evaluateExpression("");
+            assert false : "Expected InvalidExpression, but no exception was thrown";
+        } catch (InvalidExpression e) {
+            // Expected InvalidExpression
+        }
+    }
+
+    // Add more tests as needed for different scenarios and edge cases
+>>>>>>> feature-StandardCalc
 
 }

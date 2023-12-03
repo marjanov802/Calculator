@@ -1,11 +1,15 @@
 package application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
+import java.util.EmptyStackException;
+import org.junit.jupiter.api.Test;
+
 /**
  * @author DMarjanov
  */
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.EmptyStackException;
-import org.junit.jupiter.api.Test;
+
 
 public class StackTest {
 

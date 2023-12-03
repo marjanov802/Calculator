@@ -7,13 +7,16 @@ public class Driver {
 
   /**
    * The entry point for the calculator.
-   * 
-   * @param args ignored - could be used to choose which view to load in future?
+   *
+   * @param args ignored - could be used to choose which view to load in the future?
    */
   public static void main(String[] args) {
     ViewInterface view = new AsciiView();
 
-    CalcModel model = new CalcModel();
+    Stack stack = new Stack(); // Create a Stack instance
+    RevPolishCalc revPolishCalc = new RevPolishCalc(stack); // Create a RevPolishCalc instance
+
+    CalcModel model = new CalcModel(revPolishCalc); // Pass RevPolishCalc to CalcModel constructor
     System.out.println("hello");
 
     // Decide which view to build.

@@ -1,10 +1,12 @@
 package application;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 /**
  * @author DMarjanov
  */
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
+
 
 public class TypeTest {
 

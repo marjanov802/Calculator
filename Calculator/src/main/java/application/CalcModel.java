@@ -1,37 +1,26 @@
 package application;
 
-/**
- * Evaluates an expression - the evaluation can be Standard (infix) or reverse polish.
- */
-public class CalcModel implements Calculator {
-  private Calculator revPolish;
-  private Calculator standard;
+class CalcModel {
 
-  public CalcModel() {
-    // Default constructor without calculators
+  private RevPolishCalc calculator;
+
+  /**
+   * Constructs a CalcModel object with the given RevPolishCalc calculator.
+   * 
+   * @param calculator The calculator used for evaluating expressions.
+   */
+  CalcModel(RevPolishCalc calculator) {
+    this.calculator = calculator;
   }
 
-  public void setRevPolishCalculator(Calculator revPolish) {
-    this.revPolish = revPolish;
-  }
-
-  public void setStandardCalculator(Calculator standard) {
-    this.standard = standard;
-  }
-
-  @Override
-  public float evaluate(String expression, Boolean infix) throws InvalidExpression {
-    if (infix) {
-      if (standard == null) {
-        throw new IllegalStateException("Standard calculator not set");
-      }
-      return standard.evaluate(expression, infix);
-    } else {
-      if (revPolish == null) {
-        throw new IllegalStateException("Reverse Polish calculator not set");
-      }
-      return revPolish.evaluate(expression, infix);
-    }
+  /**
+   * Evaluates a mathematical expression using the underlying RevPolishCalc calculator.
+   * 
+   * @param expression The expression to be evaluated.
+   * @return The result of the evaluation.
+   * @throws InvalidExpression If the expression is invalid or cannot be evaluated.
+   */
+  float evaluateExpression(String expression) throws InvalidExpression {
+    return calculator.evaluate(expression);
   }
 }
-
