@@ -44,7 +44,7 @@ public class StandardCalc implements Calculator {
     }
   }
 
-  String convertToPostfix(String infix) throws InvalidExpression {//Trail 1 Shunting yard Algorithm
+  String convertToPostfix(String infix) throws InvalidExpression {//Trail 1 Shunting yard Algorit
     StringBuilder postfix = new StringBuilder();
     Deque<Character> stack = new ArrayDeque<>();
 

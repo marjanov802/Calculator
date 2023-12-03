@@ -53,4 +53,8 @@ public class OpStack {
   public int size() {
     return opStack.size();
   }
+  
+  public boolean isEmpty() {
+    return opStack.isEmpty();
+}
 }
