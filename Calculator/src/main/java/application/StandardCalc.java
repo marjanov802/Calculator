@@ -1,9 +1,16 @@
-//https://www.geeksforgeeks.org/stack-peek-method-in-java/ 
+// https://www.geeksforgeeks.org/stack-peek-method-in-java/
+
 package application;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+/**
+ * The StandardCalc class takes a string and changes it from infix to postfix and then uses the
+ * RevPolishCalc class to evaluate the expression.
+ * 
+ * @author DMarjanov
+ */
 public class StandardCalc implements Calculator {
 
   private OpStack opStack;
@@ -30,7 +37,6 @@ public class StandardCalc implements Calculator {
 
   String convertToPostfix(String infix) throws InvalidExpression {
     StringBuilder postfix = new StringBuilder(); // StringBuilder to build the resulting postfix
-                                                 // expression
     Deque<String> stack = new ArrayDeque<>(); // Stack to store operators during the conversion
 
     // Loop through each character in the infix expression
