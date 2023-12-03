@@ -57,4 +57,9 @@ public class OpStack {
   public boolean isEmpty() {
     return opStack.isEmpty();
 }
+
+  public void clear() {
+    // TODO Auto-generated method stub
+    
+  }
 }

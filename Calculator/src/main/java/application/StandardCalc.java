@@ -1,3 +1,4 @@
+//https://www.geeksforgeeks.org/stack-peek-method-in-java/ 
 package application;
 
 import java.util.ArrayDeque;
@@ -16,18 +17,21 @@ public class StandardCalc implements Calculator {
   @Override
   public float evaluate(String expression, Boolean infix) throws InvalidExpression {
     if (infix) {
-      // Convert infix to postfix and then evaluate using rpCalc
+      // Convert infix to postfix using opStack and then evaluate using rpCalc
       String postfixExpression = convertToPostfix(expression);
-      return rpCalc.evaluate(postfixExpression);
+      float result = rpCalc.evaluate(postfixExpression);
+      // Clear opStack after use
+      opStack.clear();
+      return result;
     } else {
       return 0;
     }
   }
 
   String convertToPostfix(String infix) throws InvalidExpression {
-    StringBuilder postfix = new StringBuilder();// StringBuilder to build the resulting postfix
-                                                // expression
-    Deque<String> stack = new ArrayDeque<>();// Stack to store operators during the conversion
+    StringBuilder postfix = new StringBuilder(); // StringBuilder to build the resulting postfix
+                                                 // expression
+    Deque<String> stack = new ArrayDeque<>(); // Stack to store operators during the conversion
 
     // Loop through each character in the infix expression
     for (int i = 0; i < infix.length(); i++) {
@@ -72,8 +76,6 @@ public class StandardCalc implements Calculator {
     return postfix.toString().trim();
   }
 
-
-
   int precedence(String op) {
     switch (op) {
       case "+":
@@ -86,5 +88,4 @@ public class StandardCalc implements Calculator {
         return 0;
     }
   }
-
 }

@@ -56,5 +56,12 @@ public class StandardCalcTest {
         float result = calculator.evaluate("8 - 3", true);
         assertEquals(5, result);
     }
+    
+    @Test
+    void testExpressionWithDecimals() throws InvalidExpression {
+        Calculator calculator = new StandardCalc();
+        float result = calculator.evaluate("2.5 * 4", true);
+        assertEquals(10, result);
+    }
    
 }
