@@ -31,7 +31,7 @@ public class StandardCalc implements Calculator {
       opStack.clear();
       return result;
     } else {
-      return 0;
+      return rpCalc.evaluate(expression);
     }
   }
 
