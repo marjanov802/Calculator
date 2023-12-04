@@ -11,4 +11,10 @@ class Release3Test {
       assertEquals(14.0, result);
   }
   
+  @Test
+  void testPostfixExpressionEvaluation() throws InvalidExpression {
+      Calculator calculator = new StandardCalc();
+      float result = calculator.evaluate("2 3 4 * +", false);
+      assertEquals(14.0, result);
+  }
 }
