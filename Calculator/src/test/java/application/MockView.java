@@ -42,11 +42,15 @@ public class MockView implements ViewInterface {
     return answer;
   }
 
-  public void calculate() {
+  public void calculate() throws InvalidExpression {
     if (calculateObserver != null) {
-      calculateObserver.run();
+        if (expression.equals("invalid expression")) {
+            throw new InvalidExpression();
+        }
+        calculateObserver.run();
+        calculateObserver = null;
     }
-  }
+}
 
   public void changeExpressionType(OpType type) {
     if (typeObserver != null) {
