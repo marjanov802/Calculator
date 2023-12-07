@@ -2,18 +2,22 @@ package application;
 
 import java.util.function.Consumer;
 
+
 public class MockView implements ViewInterface {
 
   private String expression;
+  private String answer;
+  private Consumer<OpType> typeObserver;
+  private Runnable calculateObserver;
 
   @Override
   public void addCalculateObserver(Runnable f) {
-    // No need to store the calculate observer in the mock implementation
+    this.calculateObserver = f;
   }
 
   @Override
   public void addTypeObserver(Consumer<OpType> c) {
-    // No need to store the type observer in the mock implementation
+    this.typeObserver = c;
   }
 
   @Override
@@ -23,11 +27,43 @@ public class MockView implements ViewInterface {
 
   @Override
   public void setAnswer(String a) {
-    // No need to store the answer in the mock implementation
+    this.answer = a;
   }
 
   @Override
   public void startView() {
-    // Optional: Initialization logic for starting the view
   }
+
+  public void setExpression(String expression) {
+    this.expression = expression;
+  }
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void calculate() {
+    if (calculateObserver != null) {
+      calculateObserver.run();
+    }
+  }
+
+  public void changeExpressionType(OpType type) {
+    if (typeObserver != null) {
+      typeObserver.accept(type);
+    }
+  }
+
+  public OpType getCurrentOpType() {
+    return null;
+  }
+  
+  public boolean isCalculateObserverRegistered() {
+    return calculateObserver != null;
+  }
+
+  public boolean isTypeObserverRegistered() {
+    return typeObserver != null;
+  }
+  
 }

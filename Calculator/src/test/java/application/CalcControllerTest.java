@@ -2,6 +2,8 @@ package application;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class CalcControllerTest {
 
@@ -13,6 +15,23 @@ class CalcControllerTest {
     assertNotNull(controller, "Controller should be constructed");
   }
   
-  
+  @Test
+  void testObserversRegistration() {
+    CalcModel mockModel = new CalcModel(new RevPolishCalc(new Stack()));
+    MockView mockView = new MockView();
+    CalcController controller = new CalcController(mockModel, mockView);
 
+    assertTrue(mockView.isCalculateObserverRegistered(), "Calculate observer should be registered");
+    assertTrue(mockView.isTypeObserverRegistered(), "Type observer should be registered");
+  }
+  
+  @Test
+  void testCalculateWithValidExpression() {
+    CalcModel mockModel = new CalcModel(new RevPolishCalc(new Stack()));
+    MockView mockView = new MockView();
+    CalcController controller = new CalcController(mockModel, mockView);
+    mockView.setExpression("3 5 +");
+    mockView.calculate();
+    assertEquals("8.0", mockView.getAnswer());
+  }
 }
