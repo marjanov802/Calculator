@@ -34,4 +34,14 @@ class CalcControllerTest {
     mockView.calculate();
     assertEquals("8.0", mockView.getAnswer());
   }
+  
+  @Test
+  void testCalculateWithInvalidExpression() {
+    CalcModel mockModel = new CalcModel(new RevPolishCalc(new Stack()));
+    MockView mockView = new MockView();
+    CalcController controller = new CalcController(mockModel, mockView);
+    mockView.setExpression("invalid expression");
+    assertThrows(InvalidExpression.class, mockView::calculate);
+    assertFalse(mockView.isCalculateObserverRegistered());
+  }
 }
