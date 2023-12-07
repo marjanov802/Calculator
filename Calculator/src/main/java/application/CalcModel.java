@@ -2,15 +2,17 @@ package application;
 
 class CalcModel {
 
-  private RevPolishCalc calculator;
+  private RevPolishCalc revPolishCalculator;
+  private StandardCalc standardCalculator;
 
   /**
    * Constructs a CalcModel object with the given RevPolishCalc calculator.
    * 
-   * @param calculator The calculator used for evaluating expressions.
+   * @param revPolishCalculator The calculator used for evaluating expressions.
    */
-  CalcModel(RevPolishCalc calculator) {
-    this.calculator = calculator;
+  CalcModel(RevPolishCalc revPolishCalculator) {
+    this.revPolishCalculator = revPolishCalculator;
+    this.standardCalculator = new StandardCalc();
   }
 
   /**
@@ -20,7 +22,14 @@ class CalcModel {
    * @return The result of the evaluation.
    * @throws InvalidExpression If the expression is invalid or cannot be evaluated.
    */
-  float evaluateExpression(String expression) throws InvalidExpression {
-    return calculator.evaluate(expression);
+  float evaluateExpression(String expression, OpType type) throws InvalidExpression {
+    switch (type) {
+      case REV_POLISH:
+        return revPolishCalculator.evaluate(expression);
+      case STANDARD:
+        return standardCalculator.evaluate(expression, true);
+      default:
+        throw new IllegalArgumentException("Unsupported calculator type: " + type);
+    }
   }
 }
