@@ -63,5 +63,7 @@ public class StandardCalcTest {
         float result = calculator.evaluate("2.5 * 4", true);
         assertEquals(10, result);
     }
+    
+    
    
 }
