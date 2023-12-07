@@ -53,6 +53,18 @@ class ReleaseTest4 {
     assertThrows(InvalidExpression.class, () -> revPolishCalc.evaluate("3 5 + *"),
         "Invalid expression should throw InvalidExpression");
   }
+  
+  @Test
+  void testEvaluateWithBrackets() throws InvalidExpression {
+    // Given an infix expression with brackets
+    String infixExpression = "(3 + 5) * 2";
 
+    // When using StandardCalc to evaluate the expression
+    StandardCalc standardCalc = new StandardCalc();
+    float result = standardCalc.evaluate(infixExpression, true);
+
+    // Then the result should be calculated correctly
+    assertEquals(16.0, result, "The result should be 16.0");
+  }
   
 }
