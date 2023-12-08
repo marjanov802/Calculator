@@ -62,6 +62,17 @@ public class StandardCalc implements Calculator {
 
         // Append the complete numeric value to the postfix expression
         postfix.append(numericValue.toString()).append(' ');
+      } else if (c == '(') {
+        // If the character is an opening bracket, push it onto the stack
+        stack.push(String.valueOf(c));
+    } else if (c == ')') {
+        // If the character is a closing bracket, pop and append operators from the stack
+        // until an opening bracket is encountered
+        while (!stack.isEmpty() && !stack.peek().equals("(")) {
+            postfix.append(stack.pop()).append(' ');
+        }
+        // Pop the opening bracket from the stack
+        stack.pop();
       } else {
         // If the character is an operator
         while (!stack.isEmpty() && precedence(stack.peek()) >= precedence(String.valueOf(c))) {
