@@ -37,6 +37,7 @@ public class CalcModelTest {
                 "Expected InvalidExpression, but no exception was thrown");
     }
 
-    // Add more tests as needed for different scenarios and edge cases
+    // Add more tests as needed for different scenarios and edge cases 
+    //Add more tests for higher test coverage
 
 }

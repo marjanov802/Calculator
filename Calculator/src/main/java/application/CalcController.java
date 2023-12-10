@@ -39,8 +39,4 @@ public class CalcController {
 
   private void expressionTypeChange(OpType type) {
   }
-
-  public OpType getCurrentOpType() {
-    return currentOpType;
-  }
 }
